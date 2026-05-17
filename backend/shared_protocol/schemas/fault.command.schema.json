@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "fault.command.schema.json",
+  "title": "FaultInjectionCommand",
+  "type": "object",
+  "required": ["commandId", "faultType", "subsystem", "intensity", "durationMs", "issuedAt"],
+  "properties": {
+    "commandId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "faultType": {
+      "type": "string",
+      "enum": [
+        "high_temperature",
+        "radiation_spike",
+        "low_battery",
+        "heap_exhaustion",
+        "communication_loss",
+        "queue_stress",
+        "task_freeze",
+        "emergency_recovery",
+        "memory_pressure",
+        "communication_dropout",
+        "sensor_corruption",
+        "cpu_overload"
+      ]
+    },
+    "subsystem": {
+      "type": "string",
+      "minLength": 1
+    },
+    "intensity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "durationMs": {
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 3600000
+    },
+    "reason": {
+      "type": "string"
+    },
+    "issuedAt": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": true
+}
