@@ -1,0 +1,310 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(136, 247, 255, 0.4) rgba(5, 7, 15, 0.4);
+}
+
+body {
+  @apply bg-space-950 text-slate-100 antialiased;
+  margin: 0;
+  min-height: 100vh;
+  background-image: radial-gradient(circle at 15% 15%, rgba(76, 111, 255, 0.22), transparent 48%),
+    radial-gradient(circle at 85% 5%, rgba(67, 230, 255, 0.12), transparent 42%),
+    linear-gradient(140deg, #05070f, #0b1020 44%, #05070f 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.glass-panel {
+  @apply rounded-2xl border border-slate-600/40 bg-slate-900/45 backdrop-blur-xl shadow-glass;
+}
+
+.glass-chip {
+  @apply rounded-xl border border-slate-600/40 bg-slate-900/55 px-3 py-1;
+}
+
+.glow-border {
+  box-shadow: 0 0 0 1px rgba(136, 247, 255, 0.18), 0 0 24px rgba(76, 111, 255, 0.25);
+}
+
+.scanline-overlay::after {
+  content: '';
+  position: absolute;
+  inset: -120% 0 0;
+  background: linear-gradient(to bottom, transparent, rgba(136, 247, 255, 0.06), transparent);
+  animation: scanline 7s linear infinite;
+  pointer-events: none;
+}
+
+.hud-chip {
+  @apply rounded-lg border border-slate-700/50 bg-space-900/55 px-3 py-2;
+}
+
+.hud-chip p {
+  @apply text-[0.62rem] uppercase tracking-[0.18em] text-slate-400;
+}
+
+.hud-chip strong {
+  @apply mt-1 block font-mono text-cyanpulse;
+}
+
+.space-stars-layer {
+  background-repeat: repeat;
+  opacity: 0.7;
+}
+
+.stars-near {
+  background-image: radial-gradient(rgba(226, 232, 240, 0.95) 1px, transparent 1.7px);
+  background-size: 120px 120px;
+  animation: starDriftNear 36s linear infinite;
+}
+
+.stars-mid {
+  background-image: radial-gradient(rgba(191, 219, 254, 0.8) 1px, transparent 1.6px);
+  background-size: 170px 170px;
+  animation: starDriftMid 62s linear infinite;
+}
+
+.stars-far {
+  background-image: radial-gradient(rgba(125, 211, 252, 0.65) 0.9px, transparent 1.6px);
+  background-size: 220px 220px;
+  animation: starDriftFar 90s linear infinite;
+}
+
+.earth-orbit-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  width: 420px;
+  height: 420px;
+  transform: translate(-50%, -50%);
+}
+
+.earth-sphere {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 220px;
+  height: 220px;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(153, 246, 228, 0.6), transparent 28%),
+    radial-gradient(circle at 60% 60%, rgba(59, 130, 246, 0.9), rgba(15, 23, 42, 0.96) 72%);
+  box-shadow: 0 0 70px rgba(56, 189, 248, 0.25), inset -28px -24px 55px rgba(2, 6, 23, 0.85);
+  animation: earthPulse 6s ease-in-out infinite;
+}
+
+.earth-atmosphere {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 250px;
+  height: 250px;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  border: 1px solid rgba(125, 211, 252, 0.42);
+  box-shadow: 0 0 65px rgba(56, 189, 248, 0.22);
+}
+
+.earth-glow-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 294px;
+  height: 294px;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  border: 1px dashed rgba(110, 231, 255, 0.24);
+}
+
+.orbital-trajectory {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px solid rgba(125, 211, 252, 0.2);
+}
+
+.orbital-trajectory-1 {
+  left: 16%;
+  top: 30%;
+  width: 68%;
+  height: 42%;
+  transform: rotate(-10deg);
+}
+
+.orbital-trajectory-2 {
+  left: 24%;
+  top: 24%;
+  width: 54%;
+  height: 56%;
+  transform: rotate(22deg);
+}
+
+.window-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 55%, transparent 40%, rgba(2, 6, 23, 0.9) 100%);
+}
+
+.hud-grid-overlay {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.28;
+}
+
+.radar-sweep {
+  position: absolute;
+  inset: -10%;
+  background: conic-gradient(from 0deg, rgba(67, 230, 255, 0) 0deg, rgba(67, 230, 255, 0.08) 70deg, rgba(67, 230, 255, 0) 140deg);
+  animation: radarSweep 5.8s linear infinite;
+}
+
+.comm-link {
+  animation: commPulse 1.6s ease-in-out infinite;
+}
+
+.solar-panels {
+  transform-origin: center;
+  animation: panelOscillation 4.5s ease-in-out infinite;
+}
+
+.subsystem-active-dot {
+  animation: nodePulse 1.8s ease-in-out infinite;
+}
+
+@keyframes starDriftNear {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-120px, 95px, 0);
+  }
+}
+
+@keyframes starDriftMid {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-160px, -120px, 0);
+  }
+}
+
+@keyframes starDriftFar {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(200px, -140px, 0);
+  }
+}
+
+@keyframes earthPulse {
+  0%,
+  100% {
+    filter: brightness(0.92);
+  }
+  50% {
+    filter: brightness(1.08);
+  }
+}
+
+@keyframes radarSweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes panelOscillation {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(-1.1deg) scale(1.01);
+  }
+}
+
+@keyframes commPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes nodePulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 1px rgba(125, 211, 252, 0.7));
+  }
+  50% {
+    filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.9));
+  }
+}
+
+.rtos-task-node {
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.rtos-task-node:hover {
+  transform: translateY(-1px);
+}
+
+.rtos-running-node::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(74, 222, 128, 0.42);
+  border-radius: 0.5rem;
+  animation: rtosRunningPulse 1.5s ease-out infinite;
+  pointer-events: none;
+}
+
+.rtos-restarting-node::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 0.56rem;
+  border: 1px dashed rgba(167, 139, 250, 0.5);
+  animation: rtosRestartRing 1s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rtosRunningPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
+    opacity: 0.9;
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes rtosRestartRing {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

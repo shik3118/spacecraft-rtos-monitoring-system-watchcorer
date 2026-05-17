@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "telemetry.packet.schema.json",
+  "title": "TelemetryPacket",
+  "type": "object",
+  "required": [
+    "packetId",
+    "timestamp",
+    "subsystem",
+    "severity",
+    "mode",
+    "metrics"
+  ],
+  "properties": {
+    "packetId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "subsystem": {
+      "type": "string",
+      "enum": [
+        "cpu",
+        "heap_stack",
+        "sensor_health",
+        "communication",
+        "thermal",
+        "power",
+        "watchdog",
+        "system"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["nominal", "warning", "critical"]
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["nominal", "degraded", "safe_mode", "recovery"]
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {
+        "type": ["number", "string", "boolean", "null"]
+      }
+    },
+    "event": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,19 @@
+{
+  "name": "spacecraft-telemetry-gateway",
+  "version": "1.0.0",
+  "description": "Low-latency telemetry bridge for spacecraft FreeRTOS simulator",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "simulate:fault": "node src/cli/simulateFault.js",
+    "bridge:rtos": "node src/cli/runRtosSimulatorBridge.js"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "ws": "^8.18.0"
+  }
+}
